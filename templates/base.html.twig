@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Kyros - Personal Website</title>
+		<link rel="icon" href="{{asset('assets/images/icon.png') }}" type="image/gif" sizes="16x16">
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+		<meta content="Kyros - Personal Website" name="description"/>
+		<meta content="" name="keywords"/>
+		<meta
+		content="" name="author"/>
+		<!-- CSS Files
+		    ================================================== -->
+		<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="bootstrap"/>
+		<link href="{{ asset('assets/css/plugins.css') }}" rel="stylesheet" type="text/css"/>
+		<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css"/>
+		<style>:root
+		{
+			--primary-color: #CF1F1F;
+			--primary-color-rgb: 207, 31, 31;
+		}
+	</style>
+	<link href="{{asset('assets/css/coloring.css') }}" rel="stylesheet" type="text/css"/>
+</head>
+<body  class="onepage dark-scheme">
+
+            <!-- page preloader begin -->
+            <div id="preloader">
+                <div class="preloader1"></div>
+            </div>
+            <!-- page preloader close -->
+            
+            <!-- float text begin -->
+            <div class="float-text">
+                <div class="de_social-icons">
+                    <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
+                    <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
+                    <a href="#"><i class="fa fa-instagram fa-lg"></i></a>
+                </div>
+                <span>Follow Me</span>
+            </div>
+            <!-- float text close --> 
+
+            <!-- load external content begin -->
+            <div id="de_modal">
+                <button class="button-close"></button>
+                <div class="d-modal-loader"></div>
+            </div>
+             <!-- load external content close --> 
+	<main>
+		 {{ render(controller('App\\Controller\\Menu\\MenuController::index')) }}
+
+		{% block body %}{% endblock %}
+		{% include ('_partials/footer.html.twig') %}
+	</main>
+
+
+	<!-- Javascript Files
+	    ================================================== -->
+	<script src="{{asset('assets/js/plugins.js')}}"></script>
+	<script src="{{asset('assets/js/designesia.js')}}"></script>
+	<script src='https://www.google.com/recaptcha/api.js' async defer></script>
+	<script src="{{asset('assets/form.js')}}"></script>
+	<script>
+		jQuery(function ($) {
+$('.g-recaptcha').attr('data-theme', 'dark');
+});
+	</script>
+	<script>
+		jQuery(document).ready(function () {
+$(function () { // jquery typed plugin
+$(".typed").typed({
+stringsElement: $('.typed-strings'),
+typeSpeed: 100,
+backDelay: 500,
+loop: true,
+contentType: 'html',
+// or text
+// defaults to false for infinite loop
+loopCount: false,
+callback: function () {
+null;
+},
+resetCallback: function () {
+newTyped();
+}
+});
+});
+});
+	</script>
+</body></html>
+

@@ -1,0 +1,349 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+            <section aria-label="section" class="jarallax no-top no-bottom text-light">
+                <img src="{{asset('assets/images/background/')}}{{background[0].imageName}}" class="jarallax-img" alt="">
+                <div class="v-center">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-md-12">
+                                <h6 class="wow fadeInUp" data-wow-delay=".4s"><span class="id-color">Je suis {{ auteur.firstName }} {{ auteur.lastName }}</span></h6>
+                                <div class="spacer-10"></div>
+                                <div class="h1_big text-white wow fadeInUp" data-wow-delay=".6s">
+                                    <div class="typed-strings">
+                                    {% for job in auteur.job %}
+                                        <p>{{job}}</p>
+                                    {% endfor %}
+                                    </div>
+                                    <div class="typed"></div>
+                                </div>
+                                <div class="spacer-20"></div>
+                                <ul class="list_location wow fadeInUp" data-wow-delay=".8s">
+                                {% for localisation in auteur.localisation %}
+                                    <li><span>{{localisation.pays ? localisation.pays : ""}}
+                                        </span>{{localisation.region ? localisation.region : "" }} 
+                                            {{localisation.ville ? localisation.ville : "" }}
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="index.html#section-about" class="mouse-icon-click scroll-to wow fadeInUp" data-wow-delay=".8s">
+                    <span class="mouse fadeScroll relative" data-scroll-speed="10">
+                        <span class="scroll"></span>
+                    </span>
+                </a>
+                <div class="de-gradient-edge-bottom"></div>
+            </section>
+            <section id="section-about-me">
+                <div class="container relative">
+                    <div class="row">
+                        <div class="col-md-12 text-center wow fadeInUp">
+                            <h2>{{category[0].name}}</h2>
+                            <div class="space-border"></div>
+                        </div>
+                        <div class="col-md-8 offset-md-2 text-center wow fadeInUp">
+                            <p> {{auteur.description | raw}}</p>
+                        </div>
+                        <div class="spacer-single"></div>
+                        
+                        {% for capacity in auteur.capacity %}
+                        <div class="col-lg-3 position-relative wow fadeIn" data-wow-delay=".2s">
+                            <div class="position-relative">
+                                 <div class="progressbar" data-animate="false"> 
+                                    <div class="circle" data-percent="{{capacity.percentage}}">
+                                        <div></div>
+                                    </div>
+                                    <h4>{{capacity.capacities}}</h4>
+                                </div> 
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+            <section id="section-my-quote" aria-label="section" class="jarallax no-top no-bottom">
+                <div class="de-gradient-edge-top"></div>
+                <img src="{{asset('assets/images/background/')}}{{background[1].imageName}}" class="jarallax-img" alt="">
+                <div class="v-center">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-md-10 offset-md-1">
+                                <blockquote class="q-big wow fadeIn" data-wow-duration="3s">
+                                    <i class="d-big icon_quotations"></i>
+                                    {{ auteur.citation | raw }}
+                                    <span class="d-quote-by">{{ auteur.firstName }} {{auteur.lastName}}</span>
+                                </blockquote>
+                                <div class="spacer-double"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="de-gradient-edge-bottom"></div>
+            </section>
+            <section id="section-what-i-do" class="no-bottom">
+                <div class="container relative">
+                    <div class="row">
+                        <div class="col-md-12 text-center wow fadeInUp">
+                            <h2>{{category[1].name}}</h2>
+                            <div class="space-border"></div>
+                        </div>
+                        <div class="spacer-single"></div>
+                        <div class="row g-0">
+                        {% for toDo in auteur.toDos %}
+                            <div class="col-lg-4 wow fadeIn" data-wow-delay=".2s">
+                                <div class="de_3d-box">
+                                    <div class="d-inner">
+                                        <i class="icon_genius id-color"></i>
+                                        <div class="text">
+                                            <h3>{{toDo.title}}</h3>
+                                            {{toDo.description | raw}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="section-portfolio" class="no-bottom">
+                <div class="container relative">
+                    <div class="row">
+                        <div class="col-md-12 text-center wow fadeInUp">
+                            <h2>{{category[2].name}}</h2>
+                            <div class="space-border"></div>
+                        </div>
+                    </div>
+                    <div id="gallery" class="row sequence">
+                    {% for images in portfolio %}
+                        <div class="col-md-4 item">
+                            <div class="de_modal wow" data-url="">
+                                <div class="card-image-1 mod-c" data-tilt>
+                                    <div class="d-text">
+                                        <h3>{{ images.titre }}</h3>
+                                        <h5 class="d-tag">{{ images.source}}</h5>
+                                    </div>
+                                    <img src="{{ vich_uploader_asset(images, 'imageFile') }}" class="img-fluid" alt="il y a r">
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </section>
+            <section id="section-resume">
+                <div class="container relative">
+                    <div class="row">
+                        <div class="col-md-12 text-center wow fadeInUp">
+                            <h2>{{category[3].name}}</h2>
+                            <div class="space-border"></div>
+                        </div>
+                    </div>
+                    <div class="row gh-5">
+                        <div class="col-lg-6 wow fadeInUp">
+                            <div class="p-4">
+                                <h3 class="s_border">Experiences</h3>
+                                <ul class="d_timeline">
+                                {% for emploi in auteur.emplois %}
+                                    <li class="d_timeline-item">
+                                        <h3 class="d_timeline-title">{{ emploi.dateDebut|date('Y') }} - {{emploi.dateFin|date('Y')}}</h3>
+                                        <p class="d_timeline-text"><span class="d_title">{{ emploi.poste }}</span><span class="d_company">{{ emploi.society}}</span>{{emploi.description}}</p>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 wow fadeInUp">
+                            <div class="p-4">
+                                <h3 class="s_border">Diplômes</h3>
+                                <ul class="d_timeline">
+                                {% for diplome in auteur.diplomes %}
+                                    <li class="d_timeline-item">
+                                        <h3 class="d_timeline-title">{{ diplome.dateDebut|date('Y') }} - {{diplome.dateFin|date('Y')}}</h3>
+                                        <p class="d_timeline-text"><span class="d_title">{{ diplome.name }}</span><span class="d_company">{{ diplome.school}}</span>{{diplome.description}}</p>
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="section-fun-facts" aria-label="section" class="jarallax">
+                <div class="de-gradient-edge-top"></div>
+                <img src="{{asset('assets/images/background/')}}{{background[2].imageName}}" class="jarallax-img" alt="">
+                <div class="container">
+                        <div class="row">
+                        {% for works in auteur.works %}
+                            <div class="col-md-3 wow fadeIn" data-wow-delay="0">
+                                <div class="de_count text-center">
+                                    <h3 class="timer" data-to="{{works.quantity}}" data-speed="2500">0</h3>
+                                    <span>{{works.works}}</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                           
+                        </div>
+                    </div>
+                <div class="de-gradient-edge-bottom"></div>
+            </section>
+            <section id="section-blog" class="no-bottom">
+                <div class="container relative">
+                    <div class="row">
+                        <div class="col-md-12 text-center wow fadeInUp">
+                            <h2>{{category[4].name}}</h2>
+                            <div class="space-border"></div>
+                        </div>
+                    </div>
+                    <div id="carousel-blog" class="owl-carousel wow fadeInUp">
+                        <div class="bloglist item">
+                            <div class="post-content">
+                                <div class="post-image">
+                                    <div class="de_modal" data-url="single-blog.html"><img alt="" src="{{asset('assets/images/blog/1.jpg')}}" class="lazy grayscale"></div>
+                                </div>
+                                <div class="post-text">
+                                    <h4 class="de_modal" data-url="single-blog.html">How to Make Better User Interface</h4>
+                                    <p>Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bloglist item">
+                            <div class="post-content">
+                                <div class="post-image">
+                                    <div class="de_modal" data-url="single-blog.html"><img alt="" src="{{asset('assets/images/blog/2.jpg')}}" class="lazy grayscale"></div>
+                                </div>
+                                <div class="post-text">
+                                    <h4 class="de_modal" data-url="single-blog.html">10 Web Design Tips From Experts</h4>
+                                    <p>Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bloglist item">
+                            <div class="post-content">
+                                <div class="post-image">
+                                    <div class="de_modal" data-url="single-blog.html"><img alt="" src="{{asset('assets/images/blog/3.jpg')}}" class="lazy grayscale"></div>
+                                </div>
+                                <div class="post-text">
+                                    <h4 class="de_modal" data-url="single-blog.html">The Importance of Web Design</h4>
+                                    <p>Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bloglist item">
+                            <div class="post-content">
+                                <div class="post-image">
+                                    <div class="de_modal" data-url="single-blog.html"><img alt="" src="{{asset('assets/images/blog/4.jpg')}}" class="lazy grayscale"></div>
+                                </div>
+                                <div class="post-text">
+                                    <h4 class="de_modal" data-url="single-blog.html">10 Web Design Tips From Experts</h4>
+                                    <p>Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bloglist item">
+                            <div class="post-content">
+                                <div class="post-image">
+                                    <div class="de_modal" data-url="single-blog.html"><img alt="" src="{{asset('assets/images/blog/5.jpg')}}" class="lazy grayscale"></div>
+                                </div>
+                                <div class="post-text">
+                                    <h4 class="de_modal" data-url="single-blog.html">The Importance of Web Design</h4>
+                                    <p>Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bloglist item">
+                            <div class="post-content">
+                                <div class="post-image">
+                                    <div class="de_modal" data-url="single-blog.html"><img alt="" src="{{asset('assets/images/blog/6.jpg')}}" class="lazy grayscale"></div>
+                                </div>
+                                <div class="post-text">
+                                    <h4 class="de_modal" data-url="single-blog.html">Tips for Healthy Teeth<span></span></h4>
+                                    <p>Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="section-contact" class="jarallax">
+                <div class="de-gradient-edge-top"></div>
+                <img src="{{asset('assets/images/background/')}}{{background[4].imageName}}" class="jarallax-img" alt="">
+                <div class="container z-index-1000">
+                    <div class="row">
+                        <div class="col-md-12 text-center wow fadeInUp">
+                            <h2>{{category[5].name}}</h2>
+                            <div class="space-border"></div>
+                        </div>
+                        <div class="col-lg-8 offset-lg-2 wow fadeInUp">
+                            <div class="contact_form_wrapper">
+                                <form name="contactForm" id="contact_form" class="form-border" method="post" action="index.html#">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="field-set">
+                                                <input type="text" name="Name" id="name" class="form-control" placeholder="Your Name" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="field-set">
+                                                <input type="text" name="Email" id="email" class="form-control" placeholder="Your Email" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="field-set">
+                                                <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="field-set">
+                                            <textarea name="message" id="message" class="form-control" placeholder="Your Message" required></textarea>
+                                        </div>
+                                        <div class="g-recaptcha" data-sitekey="6LdW03QgAAAAAJko8aINFd1eJUdHlpvT4vNKakj6"></div>
+                                        <div id='submit' class="mt10">
+                                            <input type='submit' id='send_message' value='Send Message' class="btn-main">
+                                        </div>
+
+                                        <div id="success_message" class='success'>
+                                            Your message has been sent successfully. Refresh this page if you want to send more messages.
+                                        </div>
+                                        <div id="error_message" class='error'>
+                                            Sorry there was an error sending your form.
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="spacer-double"></div>
+                            <div class="row text-center wow fadeInUp">
+                                <div class="col-md-4">
+                                    <div class="wm-1"></div>
+                                    <h6>Email Me</h6>
+                                    <p>{{infoContact[0].email}}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="wm-1"></div>
+                                    <h6>Call Me</h6>
+                                    <p>{{infoContact[0].phone}}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="wm-1"></div>
+                                    <h6>Address</h6>
+                                    <p>{{infoContact[0].address|raw }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="de-gradient-edge-bottom"></div>
+            </section>
+
+
+
+
+
+
+{% endblock %}
