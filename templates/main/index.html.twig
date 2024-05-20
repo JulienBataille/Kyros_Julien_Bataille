@@ -200,72 +200,19 @@
                         </div>
                     </div>
                     <div id="carousel-blog" class="owl-carousel wow fadeInUp">
+                        {% for article in article %} 
                         <div class="bloglist item">
                             <div class="post-content">
                                 <div class="post-image">
-                                    <div class="de_modal" data-url="single-blog.html"><img alt="" src="{{asset('assets/images/blog/1.jpg')}}" class="lazy grayscale"></div>
+                                    <div class="de_modal" data-url="single-blog.html"><img alt="" src="{{ vich_uploader_asset(article, 'imageFile') }}" class="lazy grayscale"></div>
                                 </div>
                                 <div class="post-text">
-                                    <h4 class="de_modal" data-url="single-blog.html">How to Make Better User Interface</h4>
-                                    <p>Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...</p>
+                                    <h4 class="de_modal" data-url="single-blog.html">{{ article.title }}</h4>
+                                    <p>{{ article.description | raw}}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="bloglist item">
-                            <div class="post-content">
-                                <div class="post-image">
-                                    <div class="de_modal" data-url="single-blog.html"><img alt="" src="{{asset('assets/images/blog/2.jpg')}}" class="lazy grayscale"></div>
-                                </div>
-                                <div class="post-text">
-                                    <h4 class="de_modal" data-url="single-blog.html">10 Web Design Tips From Experts</h4>
-                                    <p>Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bloglist item">
-                            <div class="post-content">
-                                <div class="post-image">
-                                    <div class="de_modal" data-url="single-blog.html"><img alt="" src="{{asset('assets/images/blog/3.jpg')}}" class="lazy grayscale"></div>
-                                </div>
-                                <div class="post-text">
-                                    <h4 class="de_modal" data-url="single-blog.html">The Importance of Web Design</h4>
-                                    <p>Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bloglist item">
-                            <div class="post-content">
-                                <div class="post-image">
-                                    <div class="de_modal" data-url="single-blog.html"><img alt="" src="{{asset('assets/images/blog/4.jpg')}}" class="lazy grayscale"></div>
-                                </div>
-                                <div class="post-text">
-                                    <h4 class="de_modal" data-url="single-blog.html">10 Web Design Tips From Experts</h4>
-                                    <p>Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bloglist item">
-                            <div class="post-content">
-                                <div class="post-image">
-                                    <div class="de_modal" data-url="single-blog.html"><img alt="" src="{{asset('assets/images/blog/5.jpg')}}" class="lazy grayscale"></div>
-                                </div>
-                                <div class="post-text">
-                                    <h4 class="de_modal" data-url="single-blog.html">The Importance of Web Design</h4>
-                                    <p>Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bloglist item">
-                            <div class="post-content">
-                                <div class="post-image">
-                                    <div class="de_modal" data-url="single-blog.html"><img alt="" src="{{asset('assets/images/blog/6.jpg')}}" class="lazy grayscale"></div>
-                                </div>
-                                <div class="post-text">
-                                    <h4 class="de_modal" data-url="single-blog.html">Tips for Healthy Teeth<span></span></h4>
-                                    <p>Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...</p>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </section>
@@ -340,10 +287,5 @@
                 </div>
                 <div class="de-gradient-edge-bottom"></div>
             </section>
-
-
-
-
-
 
 {% endblock %}

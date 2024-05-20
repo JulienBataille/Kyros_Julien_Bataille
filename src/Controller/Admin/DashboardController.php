@@ -2,14 +2,13 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\User;
+use App\Entity\Article;
 use App\Entity\Users;
 use App\Entity\Author;
 use App\Entity\Category;
 use App\Entity\Portfolio;
 use App\Entity\Background;
 use App\Entity\InfoContact;
-use App\Entity\Work;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -41,6 +40,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Portfolio', 'fas fa-user', Portfolio::class);
         yield MenuItem::linkToCrud('Images Background', 'fas fa-user', Background::class);
         yield MenuItem::linkToCrud('Utilisateur', 'fas fa-user', Users::class);
+        yield MenuItem::linkToCrud('Articles', 'fas fa-user', Article::class);
+
 
      
 
